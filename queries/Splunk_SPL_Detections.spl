@@ -1,0 +1,11 @@
+# =========================================================================
+# Title: Suspicious PowerShell Download Cradle Execution
+# Description: Detects encoded or suspicious PowerShell commands containing 
+#              download execution strings indicative of staging malware.
+# Platform: Splunk SIEM / Sysmon (Event ID 1 or Windows Security Event 4688)
+# =========================================================================
+
+index="security_logs" EventCode=1 (CommandLine="*Net.WebClient*" OR CommandLine="*Invoke-WebRequest*" OR CommandLine="*DownloadString*" OR CommandLine="*-enc *")
+| stats count by Computer, User, ParentImage, CommandLine, _time
+| where count > 0
+| sort - _time
