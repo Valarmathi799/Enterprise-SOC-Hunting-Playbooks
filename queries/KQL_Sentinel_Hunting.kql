@@ -1,0 +1,19 @@
+// =========================================================================
+// Title: OAuth Application Consent & Persistence Detection
+// Description: Hunts for suspicious user consent granted to external OAuth 
+//              applications, a common persistence mechanism in BEC/AiTM phishing.
+// Platform: Microsoft Sentinel / Microsoft Entra ID
+// Target Logs: AuditLogs
+// =========================================================================
+
+AuditLogs
+| where OperationName has "Consent to application"
+| mv-expand TargetResources
+| extend AppName = tostring(TargetResources.displayName),
+         ModifiedProperties = TargetResources.modifiedProperties
+| project TimeGenerated, 
+          InitiatedBy = tostring(InitiatedBy.user.userPrincipalName), 
+          IPAddress = tostring(InitiatedBy.user.ipAddress), 
+          AppName, 
+          ModifiedProperties
+| sort by TimeGenerated desc
