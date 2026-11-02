@@ -2,7 +2,7 @@
 
 Welcome to my security operations repository. This collection showcases practical, production-ready threat hunting methodologies, incident response standard operating procedures (SOPs), and detection queries designed for Layer 2 (L2) Security Operations Center (SOC) analysts. 
 
-As a cybersecurity analyst specializing in **Incident Response, Phishing/BEC analysis, and SIEM/EDR log correlation**, this repository highlights my hands-on approach to threat detection, alert triage, and adversary tracking.
+As a cybersecurity analyst specializing in **Incident Response, Phishing/BEC analysis, and SIEM/EDR log correlation**, this repository highlights my hands-on approach to threat detection, alert triage and adversary tracking.
 
 ---
 
